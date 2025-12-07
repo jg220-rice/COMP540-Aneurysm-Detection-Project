@@ -1,5 +1,31 @@
 # COMP540-Aneurysm-Detection-Project
 
+## Pre Requirements:
+#### Data manipulation
+pandas
+polars
+numpy
+
+#### Medical imaging
+pydicom
+
+#### Visualization
+matplotlib
+
+#### Image processing / SciPy
+scipy
+
+#### Machine learning / preprocessing
+scikit-learn
+
+##### Deep learning
+torch
+monai
+
+##### Utilities
+tqdm
+
+
 This repository contains the most relevant notebooks that we used for our solution to the Kaggle RSNA Aneurysm Detection Competition. The following will describe each notebook's function and relevance to the overall solution:
 
 ## vol-and-mask-pre-processing-quart.ipynb
