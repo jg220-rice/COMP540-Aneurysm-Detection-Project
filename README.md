@@ -1,4 +1,5 @@
 # COMP540-Aneurysm-Detection-Project
+This repository contains the most relevant notebooks that we used for our solution to the Kaggle RSNA Aneurysm Detection Competition. The following will describe each notebook's function and relevance to the overall solution:
 
 ## Pre Requirements:
 #### Data manipulation
@@ -26,7 +27,6 @@ monai
 tqdm
 
 
-This repository contains the most relevant notebooks that we used for our solution to the Kaggle RSNA Aneurysm Detection Competition. The following will describe each notebook's function and relevance to the overall solution:
 
 ## vol-and-mask-pre-processing-quart.ipynb
 This notebook is designed to preprocess the raw data into full volumes of the DICOM files and create zip files which each contain a quarter of the preprocessed data. This is done in order to bypass size and time restrictions on Kaggle, as the quarter sizes are much more manageable to work with. The preprocessing includes steps such as: rescaling, standardizing, and normalizing the slices in order to unify different modalities, generating ground truth masks centered around the aneurysm, and standardizing volume sizes to 160x160x160 cubic dimension. The zip files created by these notebooks are fed into other notebooks as processed volumes and masks.
