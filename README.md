@@ -35,8 +35,8 @@ This notebook is designed to preprocess the raw data into full volumes of the DI
 * Output:
   * Processed anatomical colume zip file to build the datatsets used for training. Generated dataset also available in [Kaggle](https://kaggle.com/datasets/0bc9f7ce646555dd7665d26530cd8158bcd50924a6c975a58e0c942b9b63dbf4). 
   * Binary mask volume zip file to build the datatsets used for training. Generated dataset also available in [Kaggle](https://www.kaggle.com/datasets/rafaeltinajeroaga/binary-masks-dataset/data).
-  * List of unsuccesfull preprocessings and lost masks (fully lost or lost by more than 20%). This list can be used for cleaning the training set before splitting in later stages but the output of "filtering-masks.ipynb" is prefered. 
-[Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/vol-and-mask-pre-processing-quart).
+  * List of unsuccesfull preprocessings and lost masks (fully lost or lost by more than 20%). This list can be used for cleaning the training set before splitting in later stages but the output of "filtering-masks.ipynb" is prefered.
+* [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/vol-and-mask-pre-processing-quart).
   
 
 ## filtering-masks.ipynb
@@ -47,7 +47,7 @@ This notebook is designed to filter out masks (previously implemented in the vol
 * Output:
   * List of all usable volumes given the conditions specified "usefull.npz".
   * Some metrics at different percentages.
- [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/filtering-masks)
+* [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/filtering-masks)
 
 ## u-net-roi-segmentation-bce-dice-and-dice.ipynb
 This notebook contains the main model of our solution and is the crux of our implementation. It first splits the pre-processed data (created in vol-and-mask-pre-processing-quart.ipynb and pruned in filtering-masks.ipynb) into train, val, and test sections. Then we implement a U-Net3D model which contains Conv3d blocks, Conv Upsampling blocks, and skip connections. More details on the model specifics are located within the u-net-plus-classification-submission-visualizations.ipynb notebook as well as the project report. Then after the data is passed through the models, it is evaluated on various metrics: Dice and Dice + BCE. The results and loss equations are depicted within the report. Training of the model is standard, with hyperparameters of 6 or 8 epochs, batch sizes, 1e-3 learning rate, and 1e-4 weight decay.
@@ -61,7 +61,7 @@ This notebook contains the main model of our solution and is the crux of our imp
     * BCE + Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-bce-and-dice-loss-checkpoint-7epochs/settings).
     * Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-dice-loss-checkpoint-7epochs/).
   * Some metrics at different percentages.
- [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/filtering-masks)
+* [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/filtering-masks)
 
 
 ## roi-classification-head-3dcnn.ipynb
@@ -72,7 +72,9 @@ This notebook contains an additional implentation of a simple 3D-CNN model evalu
   * [List of all usable volumes](https://www.kaggle.com/datasets/rafaeltinajeroaga/succesful/data) given the conditions specified "usefull.npz".
 * Output:
   * Best Model based on validation losses. The best model hyperparameters are saved in this repository 'aneurysm_roi_classifier_3DCNN.pth' and as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/roi-classifier-3d-cnn/settings).
+* [Notebook In Kaggle](https://www.kaggle.com/code/jjg220/roi-classification-head-3dcnn)
 
+  
 ## u-net-plus-classification-submission-visualizations.ipynb
 This notebook is implemented to depict the models we used. It was taken from the Kaggle submission. It contains a predict function that does the whole pipeline. Inputting a single link to a series folder will return the generated mask by the U-Net, its centroid and the ROI surrounding said centroid. Finally the labeled prediction will be printed as well. The current notebook loads the train and localizer csv files to make the eveluation of True positives, true negatives, true negatives and false positive easier.
 * Input:
@@ -83,5 +85,5 @@ This notebook is implemented to depict the models we used. It was taken from the
    
 * Output:
    * Prints Generated mask visualizations and ROI.
-   * Predictions used for scoring using Kaggle.  
-  
+   * Predictions used for scoring using Kaggle.
+ * [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/u-net-plus-classification-submission-visualization)
