@@ -58,8 +58,8 @@ This notebook contains the main model of our solution and is the crux of our imp
   *  [List of all usable volumes](https://www.kaggle.com/datasets/rafaeltinajeroaga/succesful/data) given the conditions specified "usefull.npz".
 * Output:
   * Best Model based on validation losses. The best model hyperparameters are saved in this repository.
-    * BCE + Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-bce-and-dice-loss-checkpoint-7epochs/settings).
-    * Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-dice-loss-checkpoint-7epochs/).
+    * BCE + Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-bce-and-dice-loss-checkpoint-7epochs/settings), also found in repository.
+    * Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-dice-loss-checkpoint-7epochs/), also found in repository.
   * Some metrics at different percentages.
 * [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/u-net-roi-segmentation-bce-dice-and-dice)
 
