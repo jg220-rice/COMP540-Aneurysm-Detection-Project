@@ -61,7 +61,7 @@ This notebook contains the main model of our solution and is the crux of our imp
     * BCE + Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-bce-and-dice-loss-checkpoint-7epochs/settings).
     * Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-dice-loss-checkpoint-7epochs/).
   * Some metrics at different percentages.
-* [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/filtering-masks)
+* [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/u-net-roi-segmentation-bce-dice-and-dice)
 
 
 ## roi-classification-head-3dcnn.ipynb
