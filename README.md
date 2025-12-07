@@ -54,7 +54,7 @@ This notebook contains the main model of our solution and is the crux of our imp
 * Input:
   * The [RNSA Dataset](https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection)'s dataframe.
   * [Binary mask dataset](https://www.kaggle.com/datasets/rafaeltinajeroaga/binary-masks-dataset/data)
-  * [Anatomical Volume dataset](https://www.kaggle.com/datasets/rafaeltinajeroaga/binary-masks-dataset/data)
+  * [Anatomical Volume dataset](https://kaggle.com/datasets/0bc9f7ce646555dd7665d26530cd8158bcd50924a6c975a58e0c942b9b63dbf4)
   *  [List of all usable volumes](https://www.kaggle.com/datasets/rafaeltinajeroaga/succesful/data) given the conditions specified "usefull.npz".
 * Output:
   * Best Model based on validation losses. The best model hyperparameters are saved in this repository.
