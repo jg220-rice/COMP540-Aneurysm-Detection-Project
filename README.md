@@ -42,7 +42,7 @@ This notebook is designed to preprocess the raw data into full volumes of the DI
 ## filtering-masks.ipynb
 This notebook is designed to filter out masks (previously implemented in the vol-and-mask-pre-processing-quart.ipynb notebook) that were somehow created improperly. This could include distortions and disappearances. This revealed 122 samples with missing masks and 242 masks that fell below an imposed size threshold. We set it such that any mask below 80% of the expected mask volume (48 * 48 * 48 or 110592) that isn't a size of 0, which is expected for slices without aneurysms. This just effectively prunes the created masks in order to train our model on higher-quality processed data. (This notebook can be used to fine tuned to review the amunt of data lost at different thresholds of mask volume perceptage kept).
 * Input:
-  * The [RNSA Dataset](https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection).
+  * The [RNSA Dataset](https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection)'s dataframe.
   * [Binary mask dataset](https://www.kaggle.com/datasets/rafaeltinajeroaga/binary-masks-dataset/data)
 * Output:
   * List of all usable volumes given the conditions specified "usefull.npz".
@@ -52,18 +52,36 @@ This notebook is designed to filter out masks (previously implemented in the vol
 ## u-net-roi-segmentation-bce-dice-and-dice.ipynb
 This notebook contains the main model of our solution and is the crux of our implementation. It first splits the pre-processed data (created in vol-and-mask-pre-processing-quart.ipynb and pruned in filtering-masks.ipynb) into train, val, and test sections. Then we implement a U-Net3D model which contains Conv3d blocks, Conv Upsampling blocks, and skip connections. More details on the model specifics are located within the u-net-plus-classification-submission-visualizations.ipynb notebook as well as the project report. Then after the data is passed through the models, it is evaluated on various metrics: Dice and Dice + BCE. The results and loss equations are depicted within the report. Training of the model is standard, with hyperparameters of 6 or 8 epochs, batch sizes, 1e-3 learning rate, and 1e-4 weight decay.
 * Input:
-  * The [RNSA Dataset](https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection).
+  * The [RNSA Dataset](https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection)'s dataframe.
   * [Binary mask dataset](https://www.kaggle.com/datasets/rafaeltinajeroaga/binary-masks-dataset/data)
   * [Anatomical Volume dataset](https://www.kaggle.com/datasets/rafaeltinajeroaga/binary-masks-dataset/data)
   *  [List of all usable volumes](https://www.kaggle.com/datasets/rafaeltinajeroaga/succesful/data) given the conditions specified "usefull.npz".
 * Output:
-  * Best Model parameters based on validation losses. The best model hyperparameters are saved in this repository.
+  * Best Model based on validation losses. The best model hyperparameters are saved in this repository.
+    * BCE + Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-bce-and-dice-loss-checkpoint-7epochs/settings).
+    * Dice best results saved as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/unet-dice-loss-checkpoint-7epochs/).
   * Some metrics at different percentages.
  [Notebook In Kaggle](https://www.kaggle.com/code/rafaeltinajeroaga/filtering-masks)
 
 
 ## roi-classification-head-3dcnn.ipynb
 This notebook contains an additional implentation of a simple 3D-CNN model evaluated in comparison to the complex U-net3D implementation. This model includes multiple stacks of (Conv3d - Batch Normalization - ReLU activation - Max Pooling) layers and results in a multilabel classification. The results and further implementation details are listed in the report. 
+* Input:
+   * The [RNSA Dataset](https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection)'s dataframe.
+  * [U-Net Generated ROI Dataset](https://www.kaggle.com/datasets/rafaeltinajeroaga/u-net-generated-rois/settings) obtained by evaluating the model and submitted to Kaggle
+  * [List of all usable volumes](https://www.kaggle.com/datasets/rafaeltinajeroaga/succesful/data) given the conditions specified "usefull.npz".
+* Output:
+  * Best Model based on validation losses. The best model hyperparameters are saved in this repository 'aneurysm_roi_classifier_3DCNN.pth' and as a [Kaggle Model](https://www.kaggle.com/models/rafaeltinajeroaga/roi-classifier-3d-cnn/settings).
 
 ## u-net-plus-classification-submission-visualizations.ipynb
-This notebook is implemented to depict the models we used and how they affect the slices we feed into them.
+This notebook is implemented to depict the models we used. It was taken from the Kaggle submission. It contains a predict function that does the whole pipeline. Inputting a single link to a series folder will return the generated mask by the U-Net, its centroid and the ROI surrounding said centroid. Finally the labeled prediction will be printed as well. The current notebook loads the train and localizer csv files to make the eveluation of True positives, true negatives, true negatives and false positive easier.
+* Input:
+   * The [RNSA Dataset](https://www.kaggle.com/competitions/rsna-intracranial-aneurysm-detection)'s dataframes and Series collection.
+   * [List of all usable volumes](https://www.kaggle.com/datasets/rafaeltinajeroaga/succesful/data) given the conditions specified "usefull.npz".
+   * Best Model U-Net ([Dice](https://www.kaggle.com/models/rafaeltinajeroaga/unet-dice-loss-checkpoint-7epochs/) or [BCE + Dice](https://www.kaggle.com/models/rafaeltinajeroaga/unet-bce-and-dice-loss-checkpoint-7epochs/settings) variants) as prefered
+   * Best [Classification Head](https://www.kaggle.com/models/rafaeltinajeroaga/roi-classifier-3d-cnn/settings) model.
+   
+* Output:
+   * Prints Generated mask visualizations and ROI.
+   * Predictions used for scoring using Kaggle.  
+  
